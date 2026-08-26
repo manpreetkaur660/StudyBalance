@@ -24,14 +24,3 @@ This repository contains the **initial project setup** only. It includes the bas
 - Visual Studio Code
 - GitHub Pages
 
-## Run Locally
-
-Open `index.html` in a modern web browser.
-
-## Suggested Initial Commit Message
-
-`Initial project setup for StudyBalance web application`
-
-## Academic Purpose
-
-This project is being developed as an academic prototype and is not a commercial product.
