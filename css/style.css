@@ -1,0 +1,76 @@
+:root {
+  --primary: #4f46e5;
+  --primary-dark: #3730a3;
+  --background: #f6f7fb;
+  --surface: #ffffff;
+  --text: #172033;
+  --muted: #606a7d;
+  --border: #e4e7ef;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: var(--background);
+  line-height: 1.6;
+}
+.site-header {
+  min-height: 70px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+}
+.brand { color: var(--primary-dark); font-size: 1.3rem; font-weight: 700; text-decoration: none; }
+nav { display: flex; gap: 1.25rem; }
+nav a { color: var(--text); text-decoration: none; font-weight: 600; }
+nav a:hover { color: var(--primary); }
+.hero {
+  max-width: 900px;
+  min-height: 520px;
+  margin: auto;
+  padding: 100px 24px 70px;
+  text-align: center;
+}
+.eyebrow { color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+h1 { margin: 10px 0 18px; font-size: clamp(2.2rem, 6vw, 4.2rem); line-height: 1.08; }
+.hero > p:not(.eyebrow, .status) { max-width: 690px; margin: 0 auto 28px; color: var(--muted); font-size: 1.1rem; }
+button {
+  padding: 13px 22px;
+  border: 0;
+  border-radius: 10px;
+  color: white;
+  background: var(--primary);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+button:hover { background: var(--primary-dark); }
+.status { min-height: 24px; color: var(--primary-dark); font-weight: 600; }
+.section { max-width: 1100px; margin: auto; padding: 70px 24px; }
+.section h2 { text-align: center; font-size: 2rem; }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; }
+.feature-grid article {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(26, 33, 56, .05);
+}
+.feature-grid h3 { margin-top: 0; }
+.feature-grid p, .about p { color: var(--muted); }
+.about { text-align: center; }
+.about p { max-width: 720px; margin: auto; }
+footer { padding: 25px; text-align: center; color: var(--muted); background: var(--surface); border-top: 1px solid var(--border); }
+@media (max-width: 600px) {
+  .site-header { padding: 16px 20px; align-items: flex-start; gap: 12px; }
+  nav { gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+  .hero { padding-top: 75px; }
+}
