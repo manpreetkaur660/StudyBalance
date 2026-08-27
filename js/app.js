@@ -5,9 +5,22 @@ let tasks = store.get("studybalance_tasks", []), sessions = store.get("studybala
 const today = () => new Date().toISOString().split("T")[0];
 $("#todayDate").textContent = new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
 $("#taskDate").min = today(); $("#taskDate").value = today();
-function toast(message) { const el = $("#toast"); el.textContent = message; el.classList.add("show"); setTimeout(() => el.classList.remove("show"), 2200) }
-function go(page) { $$('.page').forEach(x => x.classList.toggle('active', x.id === page)); $$('.nav-item').forEach(x => x.classList.toggle('active', x.dataset.page === page)); $("#pageTitle").textContent = $(`.nav-item[data-page="${page}"] span`).textContent; $("#sidebar").classList.remove("open"); window.scrollTo({ top: 0, behavior: "smooth" }); if (page === "deadlines") renderDeadlines() }
-$$('.nav-item').forEach(b => b.onclick = () => go(b.dataset.page)); $$('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go)); $("#menuButton").onclick = () => $("#sidebar").classList.toggle("open");
+function toast(message) {
+    const el = $("#toast"); el.textContent = message;
+    el.classList.add("show"); setTimeout(() => el.classList.remove("show"), 2200) 
+}
+
+function go(page) {
+    $$('.page').forEach(x => x.classList.toggle('active', x.id === page));
+    $$('.nav-item').forEach(x => x.classList.toggle('active', x.dataset.page === page));
+    $("#pageTitle").textContent = $(`.nav-item[data-page="${page}"] span`).textContent;
+    $("#sidebar").classList.remove("open"); window.scrollTo({ top: 0, behavior: "smooth" });
+    if (page === "deadlines") renderDeadlines() 
+    }
+
+$$('.nav-item').forEach(b => b.onclick = () => go(b.dataset.page));
+$$('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
+$("#menuButton").onclick = () => $("#sidebar").classList.toggle("open");
 const dialog = $("#taskDialog"); $$('[data-open-task]').forEach(b => b.onclick = () => dialog.showModal()); $("#closeDialog").onclick = () => dialog.close();
 $("#taskForm").onsubmit = e => { e.preventDefault(); tasks.unshift({ id: Date.now(), title: $("#taskTitle").value.trim(), module: $("#taskModule").value.trim(), date: $("#taskDate").value, priority: $("#taskPriority").value, completed: false }); store.set("studybalance_tasks", tasks); e.target.reset(); $("#taskDate").value = today(); dialog.close(); renderAll(); toast("Task added successfully") };
 function daysUntil(date) { const a = new Date(today() + "T00:00:00"), b = new Date(date + "T00:00:00"); return Math.round((b - a) / 86400000) }
